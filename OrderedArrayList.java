@@ -22,11 +22,24 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
     super(capacity);
   }
   public boolean add(T value) {
+    for (int x = 0; x < this.size(); x += 1) {
+      if (value.compareTo(this.get(x)) > 0) {
+        super.add(x,value);
+        return true;
+      }
+    }
     return super.add(value);
   }
+
+
+
   public void add(int index, T value){
+    add(value);
   }
-  public T set(int a,T value){
-    return super.set(a,value);
+
+  public T set(int index, T value) {
+    super.remove(index);
+    add(value);
+    return value;
   }
 }
