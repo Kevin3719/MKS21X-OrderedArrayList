@@ -22,8 +22,9 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
     super(capacity);
   }
   public boolean add(T value) {
+    if (value == null) throw new IllegalArgumentException("value cannot be null");
     for (int x = 0; x < this.size(); x += 1) {
-      if (value.compareTo(this.get(x)) > 0) {
+      if (value.compareTo(this.get(x)) < 0) {
         super.add(x,value);
         return true;
       }
